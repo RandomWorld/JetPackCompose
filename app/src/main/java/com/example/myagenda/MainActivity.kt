@@ -12,6 +12,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.myagenda.ui.theme.MyAgendaTheme
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,13 +26,20 @@ class MainActivity : ComponentActivity() {
                     //modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    myFirstScreen()
+                    val dateFormat =
+                        SimpleDateFormat("yyyy-MM-dd HH:mm:ss",
+                            Locale.getDefault())
+
+                    MyFirstScreen()
                 }
             }
         }
     }
 }
-
+fun getCurrentDateTime(): String {
+    val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+    return dateFormat.format(Date())
+}
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
