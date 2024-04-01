@@ -28,17 +28,18 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 
 @Composable
-fun MyFirstScreen(modifier:Modifier=Modifier){
-    Column() {
-        Text(getCurrentDateTime(), modifier=Modifier.fillMaxWidth(), textAlign = TextAlign.Center)
-
+    fun MyFirstScreen(navController: NavController, modifier:Modifier=Modifier){
+    Column(modifier=Modifier.fillMaxWidth()) {
+        Text(getCurrentDateTime(),
+            modifier=Modifier.fillMaxWidth(),
+            textAlign = TextAlign.Center)
         Spacer(modifier = Modifier
             .height(200.dp)
             .size(300.dp)
             .border(width = 10.dp, color = Color.Red))
-
         Box(modifier= modifier
             .padding(20.dp)
             .background(Color.LightGray)
@@ -57,7 +58,6 @@ fun MyFirstScreen(modifier:Modifier=Modifier){
         }
     }
 }
-
 
 @Composable
 fun Identificacion(){

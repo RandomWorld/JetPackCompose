@@ -9,12 +9,23 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.internal.composableLambdaNInstance
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.myagenda.ui.theme.MyAgendaTheme
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+
+//Seal class for route
+sealed class Screen(val route: String) {
+    object Home : Screen("home")
+    object Login : Screen("MyFirstScreen")
+}
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,8 +40,14 @@ class MainActivity : ComponentActivity() {
                     val dateFormat =
                         SimpleDateFormat("yyyy-MM-dd HH:mm:ss",
                             Locale.getDefault())
-
-                    MyFirstScreen()
+                    val navigationController = rememberNavController()
+                    NavHost(navController=navigationController,
+                        startDestination ="pantalla1"){
+                            composable("pantalla1"){
+                                MyFirstScreen(navController = navigationController)
+                            }
+                    }
+                    //MyFirstScreen()
                 }
             }
         }
